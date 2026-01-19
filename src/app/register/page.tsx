@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
+import { signIn } from 'next-auth/react';
 
 function register() {
     const [step, setStep] = useState<1 | 2>(1)
@@ -111,7 +112,7 @@ function register() {
                         </div>
 
                         <motion.button
-                            onClick={() => setStep(2)}
+                            onClick={()=>signIn("google",{callbackUrl:"/"})}
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.95 }}
                             className='flex items-center justify-center gap-3 py-3 bg-white/10 hover:bg-white/20 border border-white/30 rounded-xl transition cursor-pointer'
